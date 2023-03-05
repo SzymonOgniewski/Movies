@@ -1,10 +1,19 @@
 .header {
-  background-color: #828282;
+  background: linear-gradient(
+    130deg,
+    rgba(32, 32, 32, 1) 0%,
+    rgba(48, 48, 48, 1) 25%,
+    rgba(57, 57, 57, 1) 50%,
+    rgba(52, 52, 52, 1) 75%,
+    rgba(32, 32, 32, 1) 100%
+  );
+  padding: 20px 0;
 }
 .container {
   min-width: 320px;
   max-width: 1200px;
-  padding: 20px;
+  padding: 0 20px;
+  margin: 0 auto;
 }
 .navBar {
   display: flex;
@@ -13,9 +22,22 @@
 .nav {
   align-self: center;
   display: flex;
-  gap: 15px;
+  gap: 25px;
+  height: 100%;
 }
 .navLink {
-  height: 100%;
-  background-color: lightblue;
+  color: orangered;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.navLink:hover {
+  color: orange;
+  transform: scale(1.25);
+  transition: all 0.25s ease;
+}
+
+.logo {
+  font-size: 32px;
+  cursor: pointer;
 }
