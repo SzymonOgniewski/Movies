@@ -1,0 +1,21 @@
+.header {
+  background-color: #828282;
+}
+.container {
+  min-width: 320px;
+  max-width: 1200px;
+  padding: 20px;
+}
+.navBar {
+  display: flex;
+  justify-content: space-between;
+}
+.nav {
+  align-self: center;
+  display: flex;
+  gap: 15px;
+}
+.navLink {
+  height: 100%;
+  background-color: lightblue;
+}
