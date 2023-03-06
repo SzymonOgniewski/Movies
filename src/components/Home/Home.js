@@ -1,12 +1,21 @@
+import { fetchTrending } from 'components/api/api';
+import { useEffect, useState } from 'react';
+import { TrendingList } from './TrendingList/TrendingList';
+
 export const Home = () => {
+  const [trending, setTrending] = useState([]);
+  useEffect(() => {
+    const handleFetchTrending = async () => {
+      const data = await fetchTrending();
+      setTrending(data.results);
+    };
+    handleFetchTrending();
+  }, []);
+
+  // handleFetchTrending();
   return (
     <main>
-      <h1>Welcome</h1>
-      <p>
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iusto,
-        laboriosam placeat incidunt rem illum animi nemo quibusdam quia
-        voluptatum voluptate.
-      </p>
+      <TrendingList data={trending} />
     </main>
   );
 };

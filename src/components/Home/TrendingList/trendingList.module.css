@@ -1,0 +1,12 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.listTitle {
+  color: ghostwhite;
+  padding: 0 0 15px 0;
+}
+.listItem {
+  color: ghostwhite;
+}

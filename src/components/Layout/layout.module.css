@@ -1,12 +1,4 @@
 .header {
-  background: linear-gradient(
-    130deg,
-    rgba(32, 32, 32, 1) 0%,
-    rgba(48, 48, 48, 1) 25%,
-    rgba(57, 57, 57, 1) 50%,
-    rgba(52, 52, 52, 1) 75%,
-    rgba(32, 32, 32, 1) 100%
-  );
   padding: 20px 0;
 }
 .container {
@@ -18,6 +10,7 @@
 .navBar {
   display: flex;
   justify-content: space-between;
+  border-bottom: 2px solid orange;
 }
 .nav {
   align-self: center;
