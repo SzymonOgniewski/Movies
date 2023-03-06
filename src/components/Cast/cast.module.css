@@ -1,0 +1,18 @@
+.profilePoster {
+  width: 150px;
+  border-radius: 15px;
+}
+.castListItem {
+  display: flex;
+  gap: 25px;
+}
+.castList {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+.data {
+  color: ghostwhite;
+  font-size: 24px;
+  align-self: center;
+}

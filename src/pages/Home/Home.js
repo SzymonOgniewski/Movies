@@ -14,8 +14,8 @@ export const Home = () => {
 
   // handleFetchTrending();
   return (
-    <main>
+    <>
       <TrendingList data={trending} />
-    </main>
+    </>
   );
 };

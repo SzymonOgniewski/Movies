@@ -12,21 +12,29 @@ export const Layout = () => {
               </NavLink>
             </div>
             <nav className={css.nav}>
-              <NavLink to="/" className={css.navLink}>
+              <NavLink
+                to="/"
+                className={({ isActive }) =>
+                  isActive ? css.active : css.navLink
+                }
+              >
                 Home
               </NavLink>
-              <NavLink to="/movies" className={css.navLink}>
+              <NavLink
+                to="/movies"
+                className={({ isActive }) =>
+                  isActive ? css.active : css.navLink
+                }
+              >
                 Movies
               </NavLink>
             </nav>
           </div>
         </div>
       </header>
-      <main>
-        <div className={css.container}>
-          <Outlet />
-        </div>
-      </main>
+      <div className={css.container}>
+        <Outlet />
+      </div>
     </>
   );
 };

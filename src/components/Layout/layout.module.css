@@ -34,3 +34,8 @@
   font-size: 32px;
   cursor: pointer;
 }
+.active {
+  font-size: 24px;
+  font-weight: 500;
+  color: orange;
+}
