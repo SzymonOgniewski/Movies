@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Suspense } from 'react';
 import { fetchMovieDetails } from 'components/api/api';
+import { Loader } from 'components/Loader/Loader';
 import {
   useParams,
   NavLink,
@@ -8,8 +9,9 @@ import {
   Link,
 } from 'react-router-dom';
 import css from './movieDetails.module.css';
-export const MovieDetails = () => {
+const MovieDetails = () => {
   const [details, setDetails] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
   const { id } = useParams();
   const location = useLocation();
   const backLinkHref = location.state?.from ?? '/movies';
@@ -31,14 +33,19 @@ export const MovieDetails = () => {
   };
   useEffect(() => {
     const handleFetchDetails = async () => {
+      setIsLoading(true);
       const data = await fetchMovieDetails(id);
       setDetails(data);
+      setIsLoading(false);
     };
     handleFetchDetails();
   }, [id]);
   return (
     <div>
-      <Link to={backLinkHref}>Go back</Link>
+      <Link to={backLinkHref} className={css.backlink}>
+        Go back
+      </Link>
+      {isLoading && <Loader />}
       <div className={css.details}>
         <img
           src={
@@ -93,7 +100,16 @@ export const MovieDetails = () => {
           </li>
         </ul>
       </div>
-      <Outlet />
+      <Suspense
+        fallback={
+          <div style={{ color: 'ghostwhite', fontSize: '36px' }}>
+            Loading...
+          </div>
+        }
+      >
+        <Outlet />
+      </Suspense>
     </div>
   );
 };
+export default MovieDetails;

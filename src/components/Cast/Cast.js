@@ -2,19 +2,24 @@ import { useEffect, useState } from 'react';
 import { fetchMovieCredits } from 'components/api/api';
 import { useParams } from 'react-router-dom';
 import css from './cast.module.css';
-export const Cast = () => {
+import { Loader } from 'components/Loader/Loader';
+const Cast = () => {
   const [cast, setCast] = useState(null);
   const { id } = useParams();
+  const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
     const handleFetchCast = async () => {
+      setIsLoading(true);
       const data = await fetchMovieCredits(id);
       setCast(data.cast);
+      setIsLoading(false);
     };
     handleFetchCast();
   }, [id]);
   return (
     <>
       <ul className={css.castList}>
+        {isLoading && <Loader />}
         {cast?.map(item => (
           <li key={item.id} className={css.castListItem}>
             <img
@@ -36,3 +41,4 @@ export const Cast = () => {
     </>
   );
 };
+export default Cast;

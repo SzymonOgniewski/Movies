@@ -2,7 +2,7 @@
   display: flex;
   gap: 20px;
   border-bottom: 2px solid orange;
-  padding: 0 0 20px 0;
+  padding: 20px 0 20px 0;
 }
 .detailsPoster {
   border-radius: 10px;
@@ -60,4 +60,13 @@
   color: orange;
   font-size: 24px;
   font-weight: 500;
+}
+.backlink {
+  font-size: 24px;
+  color: orangered;
+  text-decoration: underline;
+}
+.backlink:hover {
+  color: orange;
+  transition: color 0.25s ease;
 }

@@ -1,11 +1,13 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { Link, Outlet, useSearchParams, useLocation } from 'react-router-dom';
 import { fetchSearching } from 'components/api/api';
+import { Loader } from 'components/Loader/Loader';
 import css from './movies.module.css';
-export const Movies = () => {
+const Movies = () => {
   const location = useLocation();
   const [searchQuery, setSearchQuery] = useState('');
   const [fetchedMovies, setFetchedMovies] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const [searchParams, setSerchParams] = useSearchParams({
     query: '',
   });
@@ -21,8 +23,10 @@ export const Movies = () => {
   };
   useEffect(() => {
     const fetchMovies = async () => {
+      setIsLoading(true);
       const getMovies = await fetchSearching(currentSearch);
       setFetchedMovies(getMovies);
+      setIsLoading(false);
     };
     fetchMovies();
   }, [currentSearch]);
@@ -49,20 +53,33 @@ export const Movies = () => {
       </div>
       <div>
         <ul className={css.list}>
-          {fetchedMovies.results?.map(item => (
-            <li key={item.id}>
-              <Link
-                to={`${item.id}`}
-                className={css.link}
-                state={{ from: location }}
-              >
-                {item.title}
-              </Link>
-            </li>
-          ))}
+          {isLoading ? (
+            <Loader />
+          ) : (
+            fetchedMovies.results?.map(item => (
+              <li key={item.id}>
+                <Link
+                  to={`${item.id}`}
+                  className={css.link}
+                  state={{ from: location }}
+                >
+                  {item.title}
+                </Link>
+              </li>
+            ))
+          )}
         </ul>
       </div>
-      <Outlet />
+      <Suspense
+        fallback={
+          <div style={{ color: 'ghostwhite', fontSize: '36px' }}>
+            Loading...
+          </div>
+        }
+      >
+        <Outlet />
+      </Suspense>
     </>
   );
 };
+export default Movies;
