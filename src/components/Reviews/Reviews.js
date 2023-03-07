@@ -9,21 +9,26 @@ export const Reviews = () => {
   useEffect(() => {
     const handleFetchReviews = async () => {
       const data = await fetchMovieReviews(id);
-      console.log(data);
       setReviews(data.results);
     };
     handleFetchReviews();
   }, [id]);
   return (
     <>
-      <ul className={css.reviews}>
-        {reviews?.map(review => (
-          <li key={review.id}>
-            <p className={css.reviewAuthor}>Author: {review.author_details.username}</p>
-            <p>{review.content}</p>
-          </li>
-        ))}
-      </ul>
+      {reviews?.length === 0 ? (
+        <p className={css.errorMsg}>There are no reviews to display</p>
+      ) : (
+        <ul className={css.reviews}>
+          {reviews?.map(review => (
+            <li key={review.id}>
+              <p className={css.reviewAuthor}>
+                Author: {review.author_details.username}
+              </p>
+              <p>{review.content}</p>
+            </li>
+          ))}
+        </ul>
+      )}
     </>
   );
 };

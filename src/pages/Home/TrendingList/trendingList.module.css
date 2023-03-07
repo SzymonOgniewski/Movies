@@ -8,5 +8,10 @@
   padding: 0 0 15px 0;
 }
 .listItem {
+  font-size: 20px;
   color: ghostwhite;
+}
+.listItem:hover {
+  color: orange;
+  transition: color 0.15s ease;
 }

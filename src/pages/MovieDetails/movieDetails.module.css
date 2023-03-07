@@ -41,6 +41,7 @@
   flex-direction: column;
   gap: 20px;
   border-bottom: 2px solid orange;
+  margin-bottom: 20px;
 }
 .additionalInfoTitle {
   font-size: 24px;

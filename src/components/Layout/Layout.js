@@ -7,7 +7,7 @@ export const Layout = () => {
         <div className={css.container}>
           <div className={css.navBar}>
             <div>
-              <NavLink to="/home" className={css.navLink}>
+              <NavLink to="/" className={css.navLink}>
                 <h1 className={css.logo}>TMDB API APP</h1>
               </NavLink>
             </div>
