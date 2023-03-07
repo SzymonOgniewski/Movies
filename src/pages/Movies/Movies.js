@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
-import { Link, Outlet, useSearchParams } from 'react-router-dom';
+import { Link, Outlet, useSearchParams, useLocation } from 'react-router-dom';
 import { fetchSearching } from 'components/api/api';
 import css from './movies.module.css';
 export const Movies = () => {
+  const location = useLocation();
   const [searchQuery, setSearchQuery] = useState('');
   const [fetchedMovies, setFetchedMovies] = useState([]);
   const [searchParams, setSerchParams] = useSearchParams({
@@ -50,7 +51,11 @@ export const Movies = () => {
         <ul className={css.list}>
           {fetchedMovies.results?.map(item => (
             <li key={item.id}>
-              <Link to={`${item.id}`} className={css.link}>
+              <Link
+                to={`${item.id}`}
+                className={css.link}
+                state={{ from: location }}
+              >
                 {item.title}
               </Link>
             </li>

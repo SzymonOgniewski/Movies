@@ -21,7 +21,7 @@ export const Layout = () => {
                 Home
               </NavLink>
               <NavLink
-                to="/movies"
+                to="movies"
                 className={({ isActive }) =>
                   isActive ? css.active : css.navLink
                 }

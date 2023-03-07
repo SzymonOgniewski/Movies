@@ -1,11 +1,18 @@
 import { useEffect, useState } from 'react';
 import { fetchMovieDetails } from 'components/api/api';
-import { useParams, NavLink, Outlet } from 'react-router-dom';
+import {
+  useParams,
+  NavLink,
+  Outlet,
+  useLocation,
+  Link,
+} from 'react-router-dom';
 import css from './movieDetails.module.css';
 export const MovieDetails = () => {
   const [details, setDetails] = useState({});
   const { id } = useParams();
-
+  const location = useLocation();
+  const backLinkHref = location.state?.from ?? '/movies';
   const handleUserScore = () => {
     const score = details.vote_average;
     const percent = Number(score * 10);
@@ -31,6 +38,7 @@ export const MovieDetails = () => {
   }, [id]);
   return (
     <div>
+      <Link to={backLinkHref}>Go back</Link>
       <div className={css.details}>
         <img
           src={
@@ -67,6 +75,7 @@ export const MovieDetails = () => {
               className={({ isActive }) =>
                 isActive ? css.active : css.additionalInfoLink
               }
+              state={location.state}
             >
               Cast
             </NavLink>
@@ -77,6 +86,7 @@ export const MovieDetails = () => {
               className={({ isActive }) =>
                 isActive ? css.active : css.additionalInfoLink
               }
+              state={location.state}
             >
               Reviews
             </NavLink>
