@@ -9,7 +9,7 @@ export const Layout = () => {
           <div className={css.navBar}>
             <div>
               <NavLink to="/" className={css.navLink}>
-                <h1 className={css.logo}>TMDB API APP</h1>
+                <h1 className={css.logo}>Movies</h1>
               </NavLink>
             </div>
             <nav className={css.nav}>
@@ -34,7 +34,13 @@ export const Layout = () => {
         </div>
       </header>
       <div className={css.container}>
-        <Suspense fallback={<div style={{ color: 'ghostwhite', fontSize: '36px' }}>Loading...</div>}>
+        <Suspense
+          fallback={
+            <div style={{ color: 'ghostwhite', fontSize: '36px' }}>
+              Loading...
+            </div>
+          }
+        >
           <Outlet />
         </Suspense>
       </div>
